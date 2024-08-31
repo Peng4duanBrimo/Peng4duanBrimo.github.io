@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta name="theme-color" content="#0000ff">
+    <meta name="theme-color" content="#0000ff">
     <meta property="og:image" content="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0023.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
     <title>Top-Up DANA</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0027.jpg'); /* URL gambar latar belakang */
-            background-size: cover; /* Menyesuaikan gambar dengan ukuran layar */
-            background-position: center; /* Posisikan gambar di tengah */
+            background-image: url('https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0028.jpg');
+            background-size: cover;
+            background-position: center;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -19,7 +21,6 @@
             justify-content: center;
             height: 100vh;
             overflow: hidden;
-            margin-top:30px;
         }
 
         .container {
@@ -50,10 +51,11 @@
             border: none;
             border-bottom: 2px solid #d3d3d3;
             outline: none;
+            min-width: 0; /* Avoids issues with width shrinking */
         }
 
         .header input[type="tel"]:focus {
-            border-bottom: 2px solid #273746; /* Biru Kehitaman */
+            border-bottom: 2px solid #273746;
         }
 
         .options {
@@ -85,36 +87,35 @@
         }
 
         .submit-button {
-    display: flex;
-    justify-content: center; /* Memastikan tombol berada di tengah */
-    width: 100%; /* Memastikan .submit-button mengisi lebar kontainer */
-    padding: 0 30px; /* Menambahkan ruang di kiri dan kanan */
-    box-sizing: border-box; /* Menyertakan padding dalam perhitungan lebar */
-    margin-top: 20px; /* Tambahkan margin di atas jika diperlukan */
-}
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 0 30px;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
 
-.submit-button button {
-    padding: 13px 40px; /* Padding horizontal lebih besar untuk membuat tombol lebih panjang */
-    background-color: #0000ff; /* Biru Kehitaman */
-    color: white;
-    border: none;
-    border-radius: 15px;
-    font-size: 13px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%; /* Membuat tombol mengisi lebar kontainer .submit-button */
-    box-sizing: border-box; /* Menyertakan padding dalam perhitungan lebar */
-}
+        .submit-button button {
+            padding: 13px 40px;
+            background-color: #0000ff;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+        }
 
-.submit-button button:hover {
-    background-color: #0000ff; /* Biru lebih gelap */
-}
-
+        .submit-button button:hover {
+            background-color: #0000cc;
+        }
 
         .loader {
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #273746; /* Biru Kehitaman */
+            border-top: 4px solid #273746;
             border-radius: 50%;
             width: 30px;
             height: 30px;
@@ -131,7 +132,7 @@
             display: none;
             text-align: center;
             padding: 20px;
-            border: 2px solid #273746; /* Biru Kehitaman */
+            border: 2px solid #273746;
             border-radius: 10px;
             background-color: #fff;
             position: fixed;
@@ -152,113 +153,102 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
     </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="header">
-        <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/CC_20240407_152118.png" alt="DANA Logo">
-        <input type="tel" id="phoneNumber" placeholder="Masukan Nomor HP" oninput="validatePhoneNumber()">
-    </div>
-    <div class="options">
-        <div class="option" data-qris="qris1" onclick="selectOption(this)">DANA 100.000<span>Rp 75.000</span></div>
-        <div class="option" data-qris="qris2" onclick="selectOption(this)">DANA 200.000<span>Rp 150.000</span></div>
-        <div class="option" data-qris="qris3" onclick="selectOption(this)">DANA 300.000<span>Rp 225.000</span></div>
-        <div class="option" data-qris="qris4" onclick="selectOption(this)">DANA 500.000<span>Rp 375.000</span></div>
-        <div class="option" data-qris="qris5" onclick="selectOption(this)">DANA 700.000<span>Rp 525.000</span></div>
-        <div class="option" data-qris="qris6" onclick="selectOption(this)">DANA 1,000.000<span>Rp 750.000</span></div>
-    </div>
-    <div class="submit-button">
-        <button id="submitButton" onclick="submitForm()" disabled>Lanjut</button>
-    </div>
-    <div class="loader" id="loader"></div>
-    
-    <!-- QRIS Box 1 -->
-    <div class="qris-box" id="qris1">
-        <h3>Silakan Scan QRIS untuk pembayaran</h3>
-        <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0018.jpg" alt="QRIS 1">
-    </div>
-    
-    <!-- QRIS Box 2 -->
-    <div class="qris-box" id="qris2">
-        <h3>Silakan Scan QRIS untuk pembayaran</h3>
-        <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0013.jpg" alt="QRIS 2">
-    </div>
-
-    <!-- QRIS Box 3 -->
-    <div class="qris-box" id="qris3">
-        <h3>Silakan Scan QRIS untuk pembayaran</h3>
-        <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0014.jpg" alt="QRIS 3">
-    </div>
-    
-    <!-- QRIS Box 4 -->
-    <div class="qris-box" id="qris4">
-        <h3>Silakan Scan QRIS untuk pembayaran</h3>
-        <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0015.jpg" alt="QRIS 4">
-    </div>
-
-    <!-- QRIS Box 5 -->
-    <div class="qris-box" id="qris5">
-        <h3>Silakan Scan QRIS untuk pembayaran</h3>
-        <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0017.jpg" alt="QRIS 5">
+    <div class="container">
+        <div class="header">
+            <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/CC_20240407_152118.png" alt="DANA Logo">
+            <input type="tel" id="phoneNumber" placeholder="Masukkan Nomor HP" oninput="validatePhoneNumber()" minlength="10" maxlength="13">
+        </div>
+        <div class="options">
+            <div class="option" data-qris="qris1" onclick="selectOption(this)">DANA 100.000<span>Rp 75.000</span></div>
+            <div class="option" data-qris="qris2" onclick="selectOption(this)">DANA 200.000<span>Rp 150.000</span></div>
+            <div class="option" data-qris="qris3" onclick="selectOption(this)">DANA 300.000<span>Rp 225.000</span></div>
+            <div class="option" data-qris="qris4" onclick="selectOption(this)">DANA 500.000<span>Rp 375.000</span></div>
+            <div class="option" data-qris="qris5" onclick="selectOption(this)">DANA 700.000<span>Rp 525.000</span></div>
+            <div class="option" data-qris="qris6" onclick="selectOption(this)">DANA 1.000.000<span>Rp 750.000</span></div>
+        </div>
+        <div class="submit-button">
+            <button id="submitButton" onclick="submitForm()" disabled>Lanjut</button>
+        </div>
+        <div class="loader" id="loader"></div>
+        
+        <!-- QRIS Boxes -->
+        <div class="qris-box" id="qris1">
+            <h3>Silakan Scan QRIS untuk pembayaran</h3>
+            <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0018.jpg" alt="QRIS 1">
+        </div>
+        <div class="qris-box" id="qris2">
+            <h3>Silakan Scan QRIS untuk pembayaran</h3>
+            <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0013.jpg" alt="QRIS 2">
+        </div>
+        <div class="qris-box" id="qris3">
+            <h3>Silakan Scan QRIS untuk pembayaran</h3>
+            <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0014.jpg" alt="QRIS 3">
+        </div>
+        <div class="qris-box" id="qris4">
+            <h3>Silakan Scan QRIS untuk pembayaran</h3>
+            <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0015.jpg" alt="QRIS 4">
+        </div>
+        <div class="qris-box" id="qris5">
+            <h3>Silakan Scan QRIS untuk pembayaran</h3>
+            <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0017.jpg" alt="QRIS 5">
+        </div>
+        <div class="qris-box" id="qris6">
+            <h3>Silakan Scan QRIS untuk pembayaran</h3>
+            <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0016.jpg" alt="QRIS 6">
+        </div>
     </div>
 
-    <!-- QRIS Box 6 -->
-    <div class="qris-box" id="qris6">
-        <h3>Silakan Scan QRIS untuk pembayaran</h3>
-        <img src="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0016.jpg" alt="QRIS 6">
-    </div>
-</div>
+    <script>
+        let selectedOption = null;
 
-<script>
-    let selectedOption = null;
+        function validatePhoneNumber() {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const validPrefixes = [
+                '0878', '0877', '0859', '0818', '0817', '0895', '0896',
+                '0882', '0881', '0852', '0853', '0822', '0821', '0811',
+                '0813', '0838', '0831', '0856', '0857', '0858', '0819',
+                '0888', '0812', '0889', '0815', '0816', '0814', '0899',
+                '0823', '0897', '0898'
+            ];
+            const submitButton = document.getElementById('submitButton');
 
-    function validatePhoneNumber() {
-        const phoneNumber = document.getElementById('phoneNumber').value;
-        const validPrefixes = [
-            '0878', '0877', '0859', '0818', '0817', '0895', '0896',
-            '0882', '0881', '0852', '0853', '0822', '0821', '0811',
-            '0813', '0838', '0831', '0856', '0857', '0858', '0819' '0888', '0812', '0889', '0815', '0816', '0814', '0899', '0823', '0897', '0898'
-        ];
-        const submitButton = document.getElementById('submitButton');
+            // Check if the phone number starts with a valid prefix and is between 10-13 digits long
+            const isValid = validPrefixes.some(prefix => phoneNumber.startsWith(prefix)) &&
+                            phoneNumber.length >= 10 && phoneNumber.length <= 13;
 
-        // Check if the phone number starts with a valid prefix and is between 12-13 digits long
-        const isValid = validPrefixes.some(prefix => phoneNumber.startsWith(prefix)) &&
-                        phoneNumber.length >= 10 && phoneNumber.length <= 13;
-
-        submitButton.disabled = !isValid;
-    }
-
-    function selectOption(element) {
-        if (selectedOption) {
-            selectedOption.style.backgroundColor = '#f9f9f9';
+            submitButton.disabled = !isValid;
         }
-        selectedOption = element;
-        element.style.backgroundColor = '#dcdcdc';
-    }
 
-    function submitForm() {
-        const phoneNumber = document.getElementById('phoneNumber').value;
-        if (phoneNumber && selectedOption) {
-            document.getElementById('loader').style.display = 'block';
-            setTimeout(() => {
-                document.getElementById('loader').style.display = 'none';
-
-                // Hide all QRIS boxes
-                const allQrisBoxes = document.querySelectorAll('.qris-box');
-                allQrisBoxes.forEach(box => box.style.display = 'none');
-
-                // Show the selected QRIS box
-                const selectedQris = selectedOption.getAttribute('data-qris');
-                document.getElementById(selectedQris).style.display = 'block';
-            }, 3000);
-        } else {
-            alert('Harap masukkan nomor HP dan pilih nominal!');
+        function selectOption(element) {
+            if (selectedOption) {
+                selectedOption.style.backgroundColor = '#f9f9f9';
+            }
+            selectedOption = element;
+            element.style.backgroundColor = '#dcdcdc';
         }
-    }
-</script>
 
+        function submitForm() {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            if (phoneNumber && selectedOption) {
+                document.getElementById('loader').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+
+                    // Hide all QRIS boxes
+                    const allQrisBoxes = document.querySelectorAll('.qris-box');
+                    allQrisBoxes.forEach(box => box.style.display = 'none');
+
+                    // Show the selected QRIS box
+                    const selectedQris = selectedOption.getAttribute('data-qris');
+                    document.getElementById(selectedQris).style.display = 'block';
+                }, 3000);
+            } else {
+                alert('Harap masukkan nomor HP dan pilih nominal!');
+            }
+        }
+    </script>
 </body>
 </html>
